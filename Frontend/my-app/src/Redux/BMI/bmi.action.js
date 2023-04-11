@@ -2,7 +2,7 @@ import axios from "axios";
 import { CALCULATE_FAILED, CALCULATE_REQUEST, CALCULATE_SUCESS } from "./bmi.action.types";
  
 
-const BaseUrl = "http://localhost:8080";
+const BaseUrl = "https://bmi-backend-rc8r.onrender.com";
 
  
 

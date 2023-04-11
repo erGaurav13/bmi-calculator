@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../../CSS/Login.css"
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +12,8 @@ const init={
 
 export const Bmi=()=>{
 const dispatch= useDispatch();  
-const {token}=useSelector(state=>state.authReducer)
+const {token}=useSelector(state=>state.authReducer);
+const {bmi}=useSelector(state=>state.bmiReducer)
 const navigate=useNavigate();
 
 if(!token){
@@ -28,15 +29,23 @@ const handelChange=(e)=>{
 
 const handelSubmit=(e)=>{
    e.preventDefault();
-   setData({...data,token})
-   dispatch(Calculate(data))
+   dispatch(Calculate({...data,token}))
 }
- console.log(data)
+ 
+
 
 return  <div id="container">
  
 <div className="Login-form-Box">
-       <h2>B-M-I </h2>
+       <h2>B-M-I ={bmi?bmi:null}  {bmi==null?null:  bmi  < 18.5
+                ? 'Underweight'
+                : bmi  >= 18.5 &&
+                bmi  <= 24.9
+                ? 'Normal weight'
+                : bmi  >= 25 &&
+                bmi  <= 29.9
+                ? 'Overweight'
+                : 'Obese'} </h2>
       <form action="">
          <label htmlFor="height">
             Height:

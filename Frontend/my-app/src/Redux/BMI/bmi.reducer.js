@@ -1,5 +1,5 @@
  
-import { CALCULATE_FAILED, CALCULATE_REQUEST, CALCULATE_SUCESS } from "./bmi.action.types";
+import { CALCULATE_FAILED, CALCULATE_REQUEST, CALCULATE_SUCESS, ERASE_BMI } from "./bmi.action.types";
 let x=JSON.parse(localStorage.getItem("token"))||null;
 
 const init={ 
@@ -35,6 +35,11 @@ const bmiReducer=(state=init,action)=>{
 
  }
  
+ case ERASE_BMI:{
+    return {
+        ...state,bmi:null
+    }
+ }
  
  
 

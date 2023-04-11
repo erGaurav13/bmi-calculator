@@ -1,7 +1,7 @@
 import axios from "axios";
 import { LOGIN_FAILED, LOGIN_REQUEST, LOGIN_SUCESS, SIGNUP_FAILED, SIGNUP_REQUEST, SIGNUP_SUCESS } from "./auth.ActionTypes";
 
-const BaseUrl = "http://localhost:8080";
+const BaseUrl = "https://bmi-backend-rc8r.onrender.com";
 export const login = (info) => async (dispatch) => {
   console.log(info)
   try {

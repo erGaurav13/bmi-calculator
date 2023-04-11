@@ -68,6 +68,8 @@ border-radius: 30px;
 #sign{
     color: aliceblue;
 }
+
+ 
 @media all and (min-width:420px) and (max-width:739px){
     .Login-form-Box{
         width: 70%;
