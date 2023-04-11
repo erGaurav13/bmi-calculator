@@ -7,17 +7,15 @@ const {
 } = require("../../Controller/Auth.Controller.js/auth.controller");
 const authRoute = express.Router();
 
-// for admin to get all user 
 authRoute.get("/getAllusers", async (req, res) => {
   try {
     const allUser = await getAllUsers();
-    res.status(200).send(allUser);
+     res.status(200).send(allUser);
   } catch (e) {
     res.status(400).send(e);
   }
 });
 
-// to get user by id
 authRoute.post("/getusers/:id", async (req, res) => {
   const id = req.params.id;
   if (!id) {
@@ -40,14 +38,15 @@ authRoute.post("/login", async (req, res) => {
   }
   try {
     const token = await login(email, password);
-    if (token) {
-      res.set("Authorization", `Bearer ${token}`);
-      res.status(200).send({ token: token, status: "ok" });
+    console.log(token)
+    if (token!==false) {
+      // res.set("Authorization", `Bearer ${token}`);
+    return    res.status(200).send({ token: token, status: "ok" });
     } else {
-      res.status(400).send("check email & password");
+     return  res.status(400).send("check email & password");
     }
   } catch (e) {
-    res.send(e);
+    return  res.send(e);
   }
 });
 
@@ -55,13 +54,16 @@ authRoute.post("/login", async (req, res) => {
 authRoute.post("/signup", async (req, res) => {
   const { name, email, password } = req.body;
   if (!name || !email || !password) {
-    res.status(400).send("missing-name, email, password");
+   return  res.status(400).send("missing-name, email, password");
   }
   try {
     const newUser = await createUser(name, email, password);
-   return  res.send(newUser);
+    if(!newUser){
+     return res.status(400).send("Already Registered")      
+    }
+   return  res.status(201).send(newUser);
   } catch (e) {
-    res.send(e);
+   return  res.status(500).send(e);
   }
 });
 

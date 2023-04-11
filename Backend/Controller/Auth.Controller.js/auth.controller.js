@@ -6,8 +6,15 @@ const User = require("../../Model/UserModel/user.model");
 //for Creating new User
 const createUser = async (name, email, passwordnothash) => {
   try {
+
+    const allReadyRegistered = await User.findOne({ email });
+    if(allReadyRegistered) {
+       return false
+       }
+
     const password = await bcrypt.hash(passwordnothash, saltRound);
     const user = await User.create({ name, email, password });
+
     return user;
   } catch (e) {
     return e;
@@ -17,13 +24,19 @@ const createUser = async (name, email, passwordnothash) => {
 // for login
 
 const login = async (email, password) => {
+  // console.log(email,password)
   try {
     const user = await User.findOne({ email });
+   if(!user) {
+      return false;
+      }
+
     const match = await bcrypt.compare(password, user.password);
     if (user && match) {
       const token = jwt.sign(
         {
-          data: "user.email",
+          email: user.email,
+          name:user.name 
         },
         "secret",
         { expiresIn: "1h" }
