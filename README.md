@@ -39,7 +39,7 @@ run happily
 Features
 This project includes the following features:
 
-- **User account creation: Users can create an account by providing necessary information, such as username, email, and password. 
+- User account creation: Users can create an account by providing necessary information, such as username, email, and password. 
 - User login: Registered users can login to their accounts using their email and password. 
 - BMI calculation: Users can input their height and weight to calculate their BMI (Body Mass Index) and view the result. 
 - BMI history: Users can view their BMI history, which includes the calculated BMI values and timestamps. 
