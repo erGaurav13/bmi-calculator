@@ -1,6 +1,7 @@
 # bmi-calculator
     BMI-calculator
 Brief project description
+**DEPLOYED**: link https://zippy-biscotti-97d780.netlify.app/
 
 Tech Stack
 The tech stack used in this project includes:
